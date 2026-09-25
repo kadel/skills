@@ -33,22 +33,14 @@ npx skills remove commit
 
 ## Available Skills
 
-All 18 skills live as independent directories at the repository root:
+All 10 skills live as independent directories at the repository root:
 
 | Skill | Description |
 |---|---|
 | [`address-pr-comments`](address-pr-comments/SKILL.md) | Address code review comments with technical rigor, verification, and critical thinking rather than performative agreement. |
 | [`backstage-custom-resource`](backstage-custom-resource/SKILL.md) | Create and configure `Backstage` Custom Resources (CR) for deploying RHDH via the `rhdh-operator` across API versions `v1alpha3`–`v1alpha5`. |
 | [`commit`](commit/SKILL.md) | Guide structured Git commits with meaningful messages, explicit staging, sign-offs, and appropriate harness attribution. |
-| [`create-skill`](create-skill/SKILL.md) | Guide creation of agent-neutral skills following the Agent Skills specification, progressive disclosure, and validation rules. |
 | [`ghostty`](ghostty/SKILL.md) | Control the Ghostty terminal emulator on macOS via AppleScript to open splits and display markdown previews. |
-| [`grill-me`](grill-me/SKILL.md) | Rigorously stress-test and challenge plans, designs, and architectures through one-by-one interviewing questions. |
-| [`gws-calendar`](gws-calendar/SKILL.md) | Manage Google Calendar events, agendas, and schedules via the `gws` CLI. |
-| [`gws-docs`](gws-docs/SKILL.md) | Read, create, and append text to Google Docs documents via the `gws` CLI. |
-| [`gws-drive`](gws-drive/SKILL.md) | Upload, search, share, and organize Google Drive files, folders, and shared drives via the `gws` CLI. |
-| [`gws-gmail`](gws-gmail/SKILL.md) | Read, draft, send, search, and triage emails via the `gws` CLI. |
-| [`gws-sheets`](gws-sheets/SKILL.md) | Read, create, append rows to, and update cells in Google Sheets spreadsheets via the `gws` CLI. |
-| [`md-to-jira`](md-to-jira/SKILL.md) | Convert Markdown text into Jira wiki markup syntax for tickets, comments, or Jira CLI input. |
 | [`obsidian-cli`](obsidian-cli/SKILL.md) | Interact with Obsidian vaults via the `obsidian` CLI for note management, search, tags, tasks, and daily notes. |
 | [`obsidian-knowledge-base`](obsidian-knowledge-base/SKILL.md) | Query, ingest sources into, and maintain an interlinked knowledge base inside an Obsidian vault. |
 | [`obsidian-notes`](obsidian-notes/SKILL.md) | Navigate vault structure and adhere to organization and frontmatter rules before creating or updating Obsidian notes. |
@@ -74,7 +66,7 @@ Guidelines:
 - Do not introduce plugin wrapper directories, marketplaces, or client-specific frontmatter fields (`model`, `argument-hint`, `allowed-tools`).
 - Put version numbers under `metadata.version` (e.g. `metadata:\n  version: "0.1.0"`).
 - Always update this README table when adding or renaming a skill.
-- See [`create-skill/SKILL.md`](create-skill/SKILL.md) and [`AGENTS.md`](AGENTS.md) for full instructions and best practices.
+- See [`AGENTS.md`](AGENTS.md) for repository instructions.
 
 ## Migration Guide
 

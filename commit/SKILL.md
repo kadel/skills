@@ -99,13 +99,8 @@ Stage specific files by name rather than using `git add -A` or `git add .`:
 # Stage specific files
 git add path/to/file1 path/to/file2
 
-# Create commit with sign-off flag and HEREDOC for proper formatting
-git commit --signoff -m "$(cat <<'EOF'
-Commit message here.
-
-Assisted-by: <assistant-name>
-EOF
-)"
+# Write the reviewed message to a temporary file, then commit it
+git commit -F /path/to/commit-message.txt
 ```
 
 ### Step 6: Verify Success
@@ -115,21 +110,28 @@ After committing, run `git status` to confirm the commit succeeded.
 ## Important Rules
 
 - **Never commit without user request**: Only create commits when explicitly asked
-- **Never push code**: Do not run `git push` under any circumstances, uless user explicitly requests it
+- **Never push code**: Do not run `git push` unless the user explicitly requests it
 - **Never amend unless requested**: Always create new commits, not amend existing ones
 - **Never skip hooks**: Do not use --no-verify or --no-gpg-sign unless user requests
 - **Never force push**: Avoid destructive git operations
 - **Never update git config**: Do not modify user's git configuration
 - **Stage files explicitly**: Prefer specific file paths over `git add -A`
-- **Always sign off**: Use `--signoff` flag with every commit
+- **Always sign off**: Put a `Signed-off-by:` trailer before the final `Assisted-by:` trailer
 
 ## Attribution
 
-Always include the `Assisted-by:` trailer at the end of commit messages. The coding agent should use its current harness or environment identity to fill in the appropriate value (e.g., from the active agent environment or configuration).
+Always include the `Assisted-by:` trailer as the final line of the commit message. Use the current harness or environment identity. Ask the user if that identity is unknown.
 
 ## Sign-off
 
-Always use the `--signoff` (or `-s`) flag when creating commits. This adds a `Signed-off-by:` trailer with the committer's identity from git config.
+Read the committer identity with `git var GIT_COMMITTER_IDENT`. Add a `Signed-off-by: Name <email>` trailer to the reviewed message file, immediately before `Assisted-by:`. If the identity is unavailable, ask the user which identity to use. Do not pass `--signoff`: Git appends that trailer after `Assisted-by:`, so the attribution would no longer be last.
+
+For example, the message file should end with:
+
+```text
+Signed-off-by: Example User <user@example.com>
+Assisted-by: <harness-name>
+```
 
 ## Handling Pre-commit Hook Failures
 
@@ -149,5 +151,5 @@ Response:
 2. Analyze the modifications
 3. Draft: "Add CODEOWNERS validation script and GitHub workflow"
 4. Stage the specific files changed
-5. Create the commit with --signoff and appropriate "Assisted-by:" trailer
-6. Confirm success with git status
+5. Create the commit with a manual `Signed-off-by:` trailer followed by `Assisted-by:`
+6. Confirm success with `git status` and inspect the final message with `git log -1 --format=%B`

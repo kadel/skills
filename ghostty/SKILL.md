@@ -1,17 +1,17 @@
 ---
 name: ghostty
-description: This skill should be used when the user asks to "open a split", "show markdown", "preview markdown", "render markdown in ghostty", "open ghostty split", "show file in split", or wants to control Ghostty terminal via AppleScript commands.
+description: Preview a Markdown file in a Ghostty split using AppleScript and glow. Use when the user asks to "render markdown in Ghostty", "preview markdown in a Ghostty split", or "show this file in a Ghostty pane".
 metadata:
   version: "0.1.0"
 ---
 
 ## Purpose
 
-Control the Ghostty terminal emulator via AppleScript. Provides commands to manipulate splits, send input, and display content in new terminal panes.
+Open a right split in Ghostty and preview a Markdown file with `glow`.
 
 ## Prerequisites
 
-- **Ghostty** terminal emulator must be running on macOS
+- **Ghostty 1.3.0 or later** must be running on macOS with AppleScript enabled
 - **glow** CLI must be installed for markdown rendering (`brew install glow`)
 
 ## Commands
@@ -28,24 +28,31 @@ Open a right split in the current Ghostty window and render a markdown file usin
 
 1. Resolve the markdown file path to an absolute path
 2. Verify the file exists and has a `.md` extension
-3. Run the following AppleScript via `osascript` to create a split and render the file:
+3. Pass the absolute path as an argument to AppleScript. AppleScript shell-quotes it before sending the command to Ghostty:
 
 ```bash
-osascript -e "
-tell application \"Ghostty\"
-    set w to front window
-    set t to focused terminal of selected tab of w
-    set t2 to split t direction right
-    delay 0.5
-    input text \"glow -p ${ABSOLUTE_FILE_PATH}\" & return to t2
-end tell
-"
+ABSOLUTE_FILE_PATH='/absolute/path/to/file.md'
+osascript - "$ABSOLUTE_FILE_PATH" <<'APPLESCRIPT'
+on run argv
+    set filePath to item 1 of argv
+    set commandText to "glow -p " & (quoted form of filePath)
+
+    tell application "Ghostty"
+        set currentTerm to focused terminal of selected tab of front window
+        set previewTerm to split currentTerm direction right
+        delay 0.5
+        input text commandText to previewTerm
+        send key "enter" to previewTerm
+    end tell
+end run
+APPLESCRIPT
 ```
 
 #### Important Notes
 
 - The `delay 0.5` is necessary to allow the new split to initialize before sending input
 - Always use absolute paths for the file to avoid working directory issues in the new split
+- Pass the path as an `osascript` argument; do not interpolate it into shell or AppleScript source
 - The `-p` flag enables pager mode in glow for scrollable output
 - If `glow` is not installed, inform the user and suggest `brew install glow`
 
