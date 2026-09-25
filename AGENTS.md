@@ -29,7 +29,7 @@ This repository contains a collection of agent-neutral skills managed with `npx 
 
 ## Validation Expectations
 
-- All 22 skills must resolve as `<canonical-name>/SKILL.md`.
+- All 18 skills must resolve as `<canonical-name>/SKILL.md`.
 - Ensure all bundled references and example files resolve locally.
 - Validate with `npx skills add . --list` and run local installation tests in temporary directories outside this repository.
 - Run `git diff --check` to ensure no whitespace or formatting issues.

@@ -33,7 +33,7 @@ npx skills remove commit
 
 ## Available Skills
 
-All 22 skills live as independent directories at the repository root:
+All 18 skills live as independent directories at the repository root:
 
 | Skill | Description |
 |---|---|
@@ -41,7 +41,6 @@ All 22 skills live as independent directories at the repository root:
 | [`backstage-custom-resource`](backstage-custom-resource/SKILL.md) | Create and configure `Backstage` Custom Resources (CR) for deploying RHDH via the `rhdh-operator` across API versions `v1alpha3`–`v1alpha5`. |
 | [`commit`](commit/SKILL.md) | Guide structured Git commits with meaningful messages, explicit staging, sign-offs, and appropriate harness attribution. |
 | [`create-skill`](create-skill/SKILL.md) | Guide creation of agent-neutral skills following the Agent Skills specification, progressive disclosure, and validation rules. |
-| [`generate-frontend-wiring`](generate-frontend-wiring/SKILL.md) | Generate frontend dynamic plugin configuration for RHDH, including mount points, routes, and menu items. |
 | [`ghostty`](ghostty/SKILL.md) | Control the Ghostty terminal emulator on macOS via AppleScript to open splits and display markdown previews. |
 | [`grill-me`](grill-me/SKILL.md) | Rigorously stress-test and challenge plans, designs, and architectures through one-by-one interviewing questions. |
 | [`gws-calendar`](gws-calendar/SKILL.md) | Manage Google Calendar events, agendas, and schedules via the `gws` CLI. |
@@ -54,11 +53,10 @@ All 22 skills live as independent directories at the repository root:
 | [`obsidian-knowledge-base`](obsidian-knowledge-base/SKILL.md) | Query, ingest sources into, and maintain an interlinked knowledge base inside an Obsidian vault. |
 | [`obsidian-notes`](obsidian-notes/SKILL.md) | Navigate vault structure and adhere to organization and frontmatter rules before creating or updating Obsidian notes. |
 | [`review-documentation`](review-documentation/SKILL.md) | Review documentation changes in pull requests for ease of understanding, technical accuracy, and structural clarity. |
-| [`rhdh-backend-dynamic-plugin-bootstrap`](rhdh-backend-dynamic-plugin-bootstrap/SKILL.md) | Bootstrap, export, package, and configure backend dynamic plugins for Red Hat Developer Hub. |
 | [`rhdh-catalog-index`](rhdh-catalog-index/SKILL.md) | Extract and inspect the RHDH catalog index OCI image to discover dynamic plugins and configuration schemas. |
-| [`rhdh-context`](rhdh-context/SKILL.md) | Essential architectural context on Red Hat Developer Hub, upstream Backstage differences, and plugin runtime nuances. |
-| [`rhdh-frontend-dynamic-plugin-bootstrap`](rhdh-frontend-dynamic-plugin-bootstrap/SKILL.md) | Bootstrap, develop, build, package, and configure frontend dynamic plugins for Red Hat Developer Hub. |
 | [`use-jira-cli`](use-jira-cli/SKILL.md) | Manage Jira issues, sprints, epics, and transitions from the command line using `jira-cli`. |
+
+For RHDH plugin authoring, export, and frontend wiring, use the maintained [RHDH skills collection](https://github.com/redhat-developer/rhdh-skills).
 
 ## Contributing
 
@@ -101,7 +99,7 @@ If you previously installed skills pointing to historical nested paths (e.g., `p
 
 ### Renamed Skills
 
-Six skills have been updated to their canonical names. When specifying `--skill`, use the new canonical name:
+Four skills have been updated to their canonical names. When specifying `--skill`, use the new canonical name:
 
 | Old Historical Directory | New Canonical Name |
 |---|---|
@@ -109,8 +107,6 @@ Six skills have been updated to their canonical names. When specifying `--skill`
 | `git-commit` | `commit` |
 | `ghostty-applescript` | `ghostty` |
 | `documentation` | `review-documentation` |
-| `rhdh-backend-dynamic-plugin` | `rhdh-backend-dynamic-plugin-bootstrap` |
-| `rhdh-frontend-dynamic-plugin` | `rhdh-frontend-dynamic-plugin-bootstrap` |
 
 ## License
 
